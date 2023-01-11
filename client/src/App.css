@@ -1,0 +1,9 @@
+.spinner-container{
+  height: 100vh;
+}
+.spinner-container .row{
+  height: 100vh;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+}

@@ -1,0 +1,84 @@
+/* Variables */
+/* General */
+html,
+body.Login {
+  height: 100%;
+}
+
+body {
+  background-color: #f8f8f8;
+}
+
+body.Login {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f8f8f8;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Login */
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+.form-signin input[type=email] {
+  margin-bottom: -1px;
+  border-radius: 3px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type=password] {
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signin button[type=submit] {
+  border-radius: 3px;
+  background-color: #0071DC;
+}
+
+/* Header */
+nav {
+  background-color: #031f42;
+}
+nav .container-fluid .navbar-brand {
+  width: 250px;
+}
+nav .container-fluid .navbar-collapse .navbar-nav .nav-item {
+  display: flex;
+  align-items: center;
+}
+nav .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link {
+  color: #ffffff;
+}
+nav .container-fluid .navbar-collapse .navbar-nav .nav-item .nav-link img {
+  width: 25px;
+}
+
+.SubMenu {
+  background-color: #ffffff;
+}
+.SubMenu .container .row {
+  height: 100px;
+  padding: 1rem 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid #0071DC;
+  background-color: #ffffff;
+  height: 150px;
+  padding: 2rem 0;
+}/*# sourceMappingURL=style.css.map */

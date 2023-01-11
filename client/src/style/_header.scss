@@ -1,0 +1,36 @@
+nav{
+    background-color: $SecondaryBlue;
+    .container-fluid{
+        .navbar-brand{
+            width: 250px;
+        }
+
+        .navbar-collapse{
+            .navbar-nav{
+                .nav-item{
+                    display: flex;
+                    align-items: center;
+                    .nav-link{
+                        color: $DefaultFontColor;
+                        img{
+                            width: 25px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.SubMenu{
+    background-color: $DefaultFontColor;
+    .container{
+        .row{
+            height: 100px;
+            padding: 1rem 0rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

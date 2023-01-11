@@ -1,0 +1,28 @@
+{
+  "name": "fanavaran",
+  "version": "1.0.0",
+  "description": "Fanavaran LMS ",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RezaKhodarahmi/Fanavaran.git"
+  },
+  "author": "Reza & Payam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RezaKhodarahmi/Fanavaran/issues"
+  },
+  "homepage": "https://github.com/RezaKhodarahmi/Fanavaran#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^2.1.0"
+  }
+}
