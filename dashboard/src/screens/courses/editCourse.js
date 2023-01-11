@@ -168,7 +168,7 @@ const EditCourse = () => {
       errors.type = "Type is required! Default is 1";
     } else if (valuses.type < 1 || valuses.type > 2) {
       errors.type = "Only Number 1 or 2";
-    }
+    } 
     if (!valuses.accessable_lifetime) {
       errors.accessable_lifetime = "Accessable lifetime is require";
     } else if (!regNumber.test(valuses.accessable_lifetime)) {
