@@ -48,9 +48,28 @@ body.Dark.rtl {
 						.dropdown-menu {
 							background-color: #283046;
 							border-color: #283046;
-							box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
+							box-shadow: 0 0 8px rgba(115, 103, 240, 0.7);
 							padding: 0.2rem;
 							text-align: right;
+							right: auto!important;
+							left: 0!important;
+
+							.dropdown-item{
+								svg, img{
+									margin-left: 0.3rem!important;
+									margin-right: unset!important;
+								}
+							}
+						}
+					}
+					.nav-link{
+						svg, img{
+							margin-left: .5rem;
+						}
+
+						&::after{
+							margin-right: .255em;
+							margin-left: unset;
 						}
 					}
 				}
@@ -72,9 +91,29 @@ body.Light.rtl {
 						.dropdown-menu {
 							background-color: #ffffff;
 							border-color: #ffffff;
-							box-shadow: 0 0 15px 0 rgba(34, 41, 47, 0.05);
+							box-shadow: 0 0 8px rgba(34, 41, 47, 0.7);
 							padding: 0.2rem;
 							text-align: right;
+							right: auto!important;
+							left: 0!important;
+
+							.dropdown-item{
+								svg, img{
+									margin-left: 0.3rem!important;
+									margin-right: unset!important;
+								}
+							}
+						}
+					}
+
+					.nav-link{
+						svg, img{
+							margin-left: .5rem;
+						}
+
+						&::after{
+							margin-right: .255em;
+							margin-left: unset;
 						}
 					}
 				}
