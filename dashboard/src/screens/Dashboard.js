@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Mail from "../components/Mail";
 import { useDispatch } from "react-redux";
 import { sendRegisterNotif } from "../actions/mailActions";
+// Components
 import BarChart from "../components/charts/BarChart";
 import LineChart from "../components/charts/LineChart";
 import PieChart from "../components/charts/PieChart";
@@ -17,7 +18,7 @@ const Dashboard = () => {
     labels: UserData.map((data) => data.year),
     datasets: [
       {
-        label: "Users Gained",
+        label: "Users",
         data: UserData.map((data) => data.userGain),
         backgroundColor: [
           "#675ed6",
