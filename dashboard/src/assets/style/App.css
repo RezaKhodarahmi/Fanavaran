@@ -332,6 +332,9 @@ body.Dark .btn-primary:hover {
 body.Dark .Content .row {
   padding: 1rem;
 }
+body.Dark .Content .RightSide .row {
+  padding: 0;
+}
 body.Dark nav {
   background-color: #283046;
   border-bottom-left-radius: 15px;

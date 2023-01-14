@@ -21,6 +21,12 @@ body.Dark {
 		.row {
 			padding: 1rem;
 		}
+
+		.RightSide{
+			.row{
+				padding: 0;
+			}
+		}
 	}
 	nav {
 		background-color: #283046;

@@ -17,13 +17,15 @@ const Dashboard = () => {
   };
   return (
     <>
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item active">
-            <Link to="/">{t("dashboard")}</Link>
-          </li>
-        </ol>
-      </nav>
+      <div className="row">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active">
+              <Link to="/">{t("dashboard")}</Link>
+            </li>
+          </ol>
+        </nav>
+      </div>
 
       <div className="row mb-3">
         <div className="col-12 col-sm-6 col-md-4">
