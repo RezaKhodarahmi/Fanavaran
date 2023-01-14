@@ -20,14 +20,14 @@ const Dashboard = () => {
         label: "Users Gained",
         data: UserData.map((data) => data.userGain),
         backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
+          "#675ed6",
+          "#826af9",
+          "#d2b0ff",
+          "#f8d3ff",
+          "#7b6ff1",
         ],
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 0,
       },
     ],
   });
@@ -55,11 +55,11 @@ const Dashboard = () => {
 
       <div className="row mb-3">
         <div className="col-12 col-sm-6 col-md-4">
-          <div className="container-fluid"><div style={{ height: 400 }}><BarChart chartData={userData}/></div></div>
+          <div className="container-fluid"><BarChart chartData={userData}/></div>
         </div>
 
         <div className="col-12 col-sm-6 col-md-4">
-          <div className="container-fluid"><div style={{ height: 400 }}><PieChart chartData={userData}/></div></div>
+          <div className="container-fluid"><PieChart chartData={userData}/></div>
         </div>
 
         <div className="col-12 col-sm-6 col-md-4">
@@ -79,7 +79,7 @@ const Dashboard = () => {
 
       <div className="row mb-3">
         <div className="col-md-12">
-          <div className="container-fluid"><div style={{ height: 400 }}><LineChart chartData={userData}/></div></div>
+          <div className="container-fluid"><LineChart chartData={userData}/></div>
         </div>
       </div>
     </>
