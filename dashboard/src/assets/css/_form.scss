@@ -1,0 +1,38 @@
+body{
+    &.Dark{
+        .form-control{
+            border-color: #404656;
+            background-color: transparent;
+            color: $DefaultFontColor;
+            transition: .3s all ease-in-out;
+
+            &:focus{
+                box-shadow: none;
+                border-color: $PrimaryBlue;
+            }
+        }
+
+        .form-select{
+            border-color: #404656;
+            background-color: $SecondaryBlue;
+            color: $DefaultFontColor;
+            transition: .3s all ease-in-out;
+
+            &:focus{
+                box-shadow: none;
+                border-color: $PrimaryBlue;
+            }
+        }
+    }
+
+    &.Light{
+        .form-control{
+            transition: .3s all ease-in-out;
+
+            &:focus{
+                box-shadow: none;
+                border-color: $PrimaryBlue;
+            }
+        }
+    }
+}

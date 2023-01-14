@@ -1,0 +1,203 @@
+body{
+    &.Dark{
+        .LeftSide{
+            padding: 0rem;
+        
+            .container{
+                background-color: $SecondaryBlue;
+                border-radius: 15px;
+                padding: 0;
+                
+                .scrollarea {
+                    overflow-y: auto;
+                }
+        
+                .SideNav{
+                    margin-bottom: 0rem;
+                    padding: 1rem;
+        
+                    .nav-item{
+                        font-size: 16px;
+                        color: #d0d2d6;
+                        width: 100%;
+                        transition: .3s all ease-in-out;
+                        cursor: pointer;
+        
+                        &:hover{
+                            .btn{
+                                padding-left: .3rem;
+                            }
+                        }
+                        
+                        .nav-link{
+                            font-size: 16px;
+                            color: #d0d2d6 ;
+                            padding: 0;
+                            width: 100%;
+                            padding: .5rem;
+                            text-align: left;
+                            display: flex;
+                            transition: .3s all ease-in-out;
+        
+                            &:hover{
+                                padding: .5rem .5rem .5rem .8rem;
+                            }
+        
+                            &.active{
+                                background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
+                                box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
+                                color: #fff;
+                                font-weight: 400;
+                                border-radius: 4px;
+                                
+                            }
+        
+                            svg{
+                                transition: .3s all ease-in-out;
+                                &:first-child{
+                                    margin-right: .8rem;
+                                }
+        
+                                &:last-child{
+                                    margin-left: auto;
+                                }
+                            }
+        
+                            &[aria-expanded="false"]{
+                                svg:last-child{
+                                    transform: rotate(0deg);
+                                }
+                            }
+        
+                            &[aria-expanded="true"]{
+                                svg:last-child{
+                                    transform: rotate(90deg);
+                                }
+                            }
+                        }
+        
+                        .SideNavChild {
+                            ul{
+                                li{
+                                    padding: 1rem 0 0; 
+                                    a{
+                                        font-size: 16px;
+                                        color: #d0d2d6;
+        
+                                        svg{
+                                            width: 10px;
+                                            margin-right: 1rem;
+                                            margin-left: .5rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.Light{
+        .LeftSide{
+            padding: 0rem;
+        
+            .container{
+                background-color: $DefaultFontColor;
+                border-radius: 15px;
+                padding: 0;
+                
+                .scrollarea {
+                    overflow-y: auto;
+                }
+        
+                .SideNav{
+                    margin-bottom: 0rem;
+                    padding: 1rem;
+                    box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+                    border-radius: 15px;
+        
+                    .nav-item{
+                        font-size: 16px;
+                        color: $LightFontColor;
+                        width: 100%;
+                        transition: .3s all ease-in-out;
+                        cursor: pointer;
+        
+                        &:hover{
+                            .btn{
+                                padding-left: .3rem;
+                            }
+                        }
+                        
+                        .nav-link{
+                            font-size: 16px;
+                            color: $LightFontColor ;
+                            padding: 0;
+                            width: 100%;
+                            padding: .5rem;
+                            text-align: left;
+                            display: flex;
+                            transition: .3s all ease-in-out;
+        
+                            &:hover{
+                                padding: .5rem .5rem .5rem .8rem;
+                            }
+        
+                            &.active{
+                                background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
+                                box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
+                                color: #fff;
+                                font-weight: 400;
+                                border-radius: 4px;
+                                
+                            }
+        
+                            svg{
+                                transition: .3s all ease-in-out;
+                                &:first-child{
+                                    margin-right: .8rem;
+                                }
+        
+                                &:last-child{
+                                    margin-left: auto;
+                                }
+                            }
+        
+                            &[aria-expanded="false"]{
+                                svg:last-child{
+                                    transform: rotate(0deg);
+                                }
+                            }
+        
+                            &[aria-expanded="true"]{
+                                svg:last-child{
+                                    transform: rotate(90deg);
+                                }
+                            }
+                        }
+        
+                        .SideNavChild {
+                            ul{
+                                li{
+                                    padding: 1rem 0 0; 
+                                    a{
+                                        font-size: 16px;
+                                        color: $LightFontColor;
+        
+                                        svg{
+                                            width: 10px;
+                                            margin-right: 1rem;
+                                            margin-left: .5rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

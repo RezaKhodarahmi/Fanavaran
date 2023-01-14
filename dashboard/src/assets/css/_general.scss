@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html,
+body.Login {
+  height: 100%;
+}
+
+body.Login {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: $DarkBG;
+}
+
+body{
+  transition: .3s all ease-in-out;
+  &.Dark{
+    background-color: $DarkBG;
+    font-family: Montserrat;
+  
+    a{
+      text-decoration: none;
+    }
+  
+    .btn{
+      font-size: 14px;
+      font-weight: 500;
+    }
+  
+    .btn-primary{
+      border-color: #7367f0;
+      background-color: #7367f0;
+      color: #fff;
+  
+      &:hover{
+        border-color: #7367f0;
+        background-color: #7367f0;
+      }
+    }
+  
+    .Content .row{
+      padding: 1rem;
+    }
+  }
+
+  &.Light{
+      background-color: $LightBG;
+      font-family: Montserrat;
+    
+      a{
+        text-decoration: none;
+      }
+    
+      .btn{
+        font-size: 14px;
+        font-weight: 500;
+      }
+    
+      .btn-primary{
+        border-color: #7367f0;
+        background-color: #7367f0;
+        color: #625f6e;
+    
+        &:hover{
+          border-color: #7367f0;
+          background-color: #7367f0;
+        }
+      }
+    
+      .Content .row{
+        padding: 1rem;
+      }
+    }
+}

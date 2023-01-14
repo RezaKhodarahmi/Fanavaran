@@ -96,7 +96,7 @@ const Login = () => {
         <Loading />
       ) : (
         <div
-          className="login-form-container text-center"
+          className="login-form-container text-center s"
           style={{ width: "100%", height: "100vh" }}
         >
           <main className="form-signin w-100 mx-auto pt-5">
