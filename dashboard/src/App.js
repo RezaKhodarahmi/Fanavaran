@@ -29,9 +29,11 @@ import EditPost from "./screens/posts/editPost";
 import Posts from "./screens/posts/Posts";
 import Transactions from "./screens/transactions/Transaction";
 import Booking from "./screens/booking/Booking";
-import Categories from "./screens/category/Categories"
-import NewCategories from "./screens/category/createCategory"
-import EditCategories from "./screens/category/editCategory"
+import Categories from "./screens/category/Categories";
+import NewCategories from "./screens/category/createCategory";
+import EditCategories from "./screens/category/editCategory";
+import PostCategories from "./screens/posts/Categories";
+
 // import ReactGA from "react-ga";
 // ReactGA.initialize("UA-204902793-1");
 const language = [
@@ -387,12 +389,32 @@ function App() {
                       ></Route>
                       <Route path="/posts" element={<Posts />}></Route>
                       <Route path="/posts/new" element={<CreatePost />}></Route>
-                      <Route path="/posts/edit/:id" element={<EditPost />}></Route>
-                      <Route path="/transactions" element={<Transactions />}></Route>
+                      <Route
+                        path="/posts/edit/:id"
+                        element={<EditPost />}
+                      ></Route>
+                      <Route
+                        path="/posts/categories"
+                        element={<PostCategories />}
+                      ></Route>
+
+                      <Route
+                        path="/transactions"
+                        element={<Transactions />}
+                      ></Route>
                       <Route path="/booking" element={<Booking />}></Route>
-                      <Route path="/categories" element={<Categories />}></Route>
-                      <Route path="/categories/create" element={<NewCategories />}></Route>
-                      <Route path="/category/edit/:id" element={<EditCategories />}></Route>
+                      <Route
+                        path="/categories"
+                        element={<Categories />}
+                      ></Route>
+                      <Route
+                        path="/categories/create"
+                        element={<NewCategories />}
+                      ></Route>
+                      <Route
+                        path="/category/edit/:id"
+                        element={<EditCategories />}
+                      ></Route>
                     </Routes>
                   </div>
                 </div>
