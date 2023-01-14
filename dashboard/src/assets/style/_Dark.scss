@@ -21,12 +21,18 @@ body.Dark {
 		.row {
 			padding: 1rem;
 		}
+
+		.RightSide{
+			.row{
+				padding: 0;
+			}
+		}
 	}
 	nav {
 		background-color: #283046;
 		border-bottom-left-radius: 15px;
 		border-bottom-right-radius: 15px;
-		box-shadow: 0 8px 25px -8px #283046;
+		box-shadow: 0 8px 8px -8px #283046;
 		.container-fluid {
 			.navbar-brand {
 				width: 200px;
