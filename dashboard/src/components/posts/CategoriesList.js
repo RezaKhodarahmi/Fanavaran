@@ -1,9 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getAllCategories,
-  deleteCategory,
-} from "../../actions/categoryActions";
+    getCategories,
+    deleteCategory,
+} from "../../actions/postsCategoryAction";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert"; // Import
@@ -22,15 +22,14 @@ function List(props) {
     : null;
   //Get all users
   useEffect(() => {
-    dispatch(getAllCategories(token));
+    dispatch(getCategories(token));
   }, []);
-  const { allCategories } = useSelector((state) => state.categories);
-  console.log(allCategories);
+  const { categories } = useSelector((state) => state.postCategory);
   const [newcategory, setNewCategory] = useState();
 
   useEffect(() => {
-    setNewCategory(allCategories);
-  }, [allCategories]);
+    setNewCategory(categories);
+  }, [categories]);
 
   //create a new array by filtering the original array
   const filteredData = newcategory?.filter((el) => {
