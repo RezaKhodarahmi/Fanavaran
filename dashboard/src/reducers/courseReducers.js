@@ -32,14 +32,18 @@ export const getCoursesReducer = (
   }
 };
 export const getCourseByIdReducer = (
-  state = { loading: false, data: [], err: [] },
+  state = { loading: false, data: [], categories: [], err: [] },
   action
 ) => {
   switch (action.type) {
     case REQUEST_GET_COURSE:
       return { loading: true, data: null };
     case SUCCESS_GET_COURSE:
-      return { loading: false, data: action.payload };
+      return {
+        loading: false,
+        data: action.payload,
+        categories: action.categories,
+      };
     case FAIL_GET_COURSE:
       return { loading: false, err: action.payload };
     default:
@@ -47,14 +51,14 @@ export const getCourseByIdReducer = (
   }
 };
 export const createCourseReducer = (
-  state = { loading: false,  success:null,id:null, err: null  },
+  state = { loading: false, success: null, id: null, err: null },
   action
 ) => {
   switch (action.type) {
     case REQUEST_CREATE_COURSES:
       return { loading: true, success: false };
     case SUCCESS_CREATE_COURSES:
-      return { loading: false, success: true,id:action.payload };
+      return { loading: false, success: true, id: action.payload };
     case FAIL_CREATE_COURSES:
       return { loading: false, err: true };
     default:
@@ -62,7 +66,7 @@ export const createCourseReducer = (
   }
 };
 export const editCourseReducer = (
-  state = { loading: false, success:false, err: null },
+  state = { loading: false, success: false, err: null },
   action
 ) => {
   switch (action.type) {

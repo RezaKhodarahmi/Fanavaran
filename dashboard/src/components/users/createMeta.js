@@ -93,8 +93,8 @@ const regexAdderss = /^[a-zA-Z0-9\s,'-]*$/
               </button>
             </div>
           </form>
-          {success ? <Success /> : <></>}
-          {err ? <Danger /> : <></>}
+          {success ? <Success message="User meta created successfuly!" /> : <></>}
+          {err ? <Danger message="Error was happend!"/> : <></>}
         </div>
       )}
     </>

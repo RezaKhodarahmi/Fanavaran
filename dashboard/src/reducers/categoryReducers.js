@@ -17,14 +17,14 @@ import {
 } from "../constants/categoryConstants";
 
 export const getCategoriesReducer = (
-  state = { loading: false, data: [], err: [] },
+  state = { loading: false, allCategories: [], err: [] },
   action
 ) => {
   switch (action.type) {
     case REQUEST_GET_CATEGORIES:
-      return { loading: true, data: null };
+      return { loading: true, allCategories: null };
     case SUCCESS_GET_CATEGORIES:
-      return { loading: false, data: action.payload };
+      return { loading: false, allCategories: action.payload };
     case FAIL_GET_CATEGORIES:
       return { loading: false, err: action.payload };
     default:

@@ -11,12 +11,16 @@ import currentDate from "../../components/tools/currentDate";
 import Content from "../../components/courses/Content";
 import { getAllCategories } from "../../actions/categoryActions";
 import PostCategories from "../../components/posts/Categories";
+import { getInstractors } from "../../actions/userActions";
 const CreateCourse = () => {
   const { t } = useTranslation();
   const createForm = useRef();
   const dispatch = useDispatch();
 
   var { success, err, id } = useSelector((state) => state.newCourse);
+  var { instructors } = useSelector((state) => state.instructors);
+
+
   //Convert data to an Object
 
   const token = localStorage.getItem("token")
@@ -39,6 +43,7 @@ const CreateCourse = () => {
     end_date: "",
     members_access: 100,
     duration_info: "",
+    instructor: null,
     created_at: currentDate,
   };
   const [description, setDescription] = useState();
@@ -61,9 +66,9 @@ const CreateCourse = () => {
   }, [formErrors]);
   useEffect(() => {
     dispatch(getAllCategories(token));
+    dispatch(getInstractors(token));
   }, []);
-  const { data } = useSelector((state) => state.categories);
-
+  const { allCategories } = useSelector((state) => state.categories);
   //Chenge image url
   useEffect(() => {
     if (images.length < 1) return;
@@ -379,6 +384,24 @@ const CreateCourse = () => {
                 </span>
               </div>
               <div className="col-md-6 col-sm-12 px-5 d-inline-block">
+                <Form.Label htmlFor="instructor">{t("instructor")}</Form.Label>
+                <Form.Select
+                  className={formErrors.instructor ? "is-invalid" : ""}
+                  id="instructor"
+                  name="instructor"
+                  value={formValues.instructor}
+                  onChange={handelChange}
+                >
+                  {instructors?.map((instructor, index) => (
+                    <option key={instructor.ID} value={instructor.ID}>
+                      {instructor.display_name}
+                    </option>
+                  ))}
+                 
+                </Form.Select>
+                <span className="validate-error">{formErrors.instructor}</span>
+              </div>
+              <div className="col-md-6 col-sm-12 px-5 d-inline-block">
                 <Form.Label htmlFor="rate">{t("rate")}</Form.Label>
                 <Form.Control
                   className={formErrors.rate ? "is-invalid" : ""}
@@ -392,6 +415,7 @@ const CreateCourse = () => {
                 />
                 <span className="validate-error">{formErrors.rate}</span>
               </div>
+
               <div className="col-md-6 col-sm-12 px-5 d-inline-block">
                 <Form.Label htmlFor="image">{t("image")}</Form.Label>
                 <Form.Control
@@ -405,10 +429,10 @@ const CreateCourse = () => {
                 <span className="validate-error">{formErrors.image}</span>
               </div>
               <div className="col-md-6 col-sm-12 px-5 d-inline-block mb-5">
-              <Form.Label htmlFor="category">{t("category")}</Form.Label>
-              <PostCategories categories={data}/>
-              {/* <span className="validate-error">{formErrors.published}</span> */}
-            </div>
+                <Form.Label htmlFor="category">{t("category")}</Form.Label>
+                <PostCategories categories={allCategories} />
+                {/* <span className="validate-error">{formErrors.published}</span> */}
+              </div>
               <div className="col-md-6 col-sm-12 px-5 d-inline-block">
                 <img src={imageUrl} alt={formValues.title} width="200"></img>
               </div>

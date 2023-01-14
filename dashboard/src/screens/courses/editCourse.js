@@ -10,26 +10,37 @@ import { editCourse } from "../../actions/courseActions";
 import Success from "../../components/messages/success";
 import Danger from "../../components/messages/Danger";
 import currentDate from "../../components/tools/currentDate";
+import { getAllCategories } from "../../actions/categoryActions";
+import PostCategories from "../../components/posts/Categories";
+import { getInstractors } from "../../actions/userActions";
 
 const EditCourse = () => {
   const { id } = useParams();
+  //Give token from localstorage
+
+  const token = localStorage.getItem("token")
+    ? localStorage.getItem("token")
+    : null;
   const { t } = useTranslation();
   const createForm = useRef();
   const dispatch = useDispatch();
   //Get user data from database
   useEffect(() => {
     dispatch(getCourseById(id, token));
-  }, []);
+    dispatch(getAllCategories(token));
+    dispatch(getInstractors(token));
+  }, [id]);
   //Get data from store
-  const { data } = useSelector((state) => state.singleCourse);
+  const { data, categories } = useSelector((state) => state.singleCourse);
+  const { allCategories } = useSelector((state) => state.categories);
+  var { instructors } = useSelector((state) => state.instructors);
+
+  console.log();
+
   const { success, err } = useSelector((state) => state.updateCourse);
   //Convert data to an Object
   const courseData = Object(data);
-  //Give token from localstorage
 
-  const token = localStorage.getItem("token")
-    ? localStorage.getItem("token")
-    : null;
   //Set initial State
   const initialState = {
     title: "",
@@ -47,6 +58,7 @@ const EditCourse = () => {
     end_date: "",
     members_access: "",
     duration_info: "",
+    instructor:null,
     id: null,
   };
   const [description, setDescription] = useState();
@@ -78,6 +90,7 @@ const EditCourse = () => {
         end_date: courseData.end_date,
         members_access: courseData.members_access,
         duration_info: courseData.duration_info,
+        instructor:courseData.instructor,
         id: courseData.ID,
       };
     });
@@ -168,7 +181,7 @@ const EditCourse = () => {
       errors.type = "Type is required! Default is 1";
     } else if (valuses.type < 1 || valuses.type > 2) {
       errors.type = "Only Number 1 or 2";
-    } 
+    }
     if (!valuses.accessable_lifetime) {
       errors.accessable_lifetime = "Accessable lifetime is require";
     } else if (!regNumber.test(valuses.accessable_lifetime)) {
@@ -401,6 +414,23 @@ const EditCourse = () => {
                 </span>
               </div>
               <div className="col-md-6 col-sm-12 px-5 d-inline-block">
+                <Form.Label htmlFor="instructor">{t("instructor")}</Form.Label>
+                <Form.Select
+                  className={formErrors.instructor ? "is-invalid" : ""}
+                  id="instructor"
+                  name="instructor"
+                  value={formValues.instructor}
+                  onChange={handelChange}
+                >
+                  {instructors?.map((instructor) => (
+                    <option key={instructor.ID} value={instructor.ID}>
+                      {instructor.display_name}
+                    </option>
+                  ))}
+                </Form.Select>
+                <span className="validate-error">{formErrors.instructor}</span>
+              </div>
+              <div className="col-md-6 col-sm-12 px-5 d-inline-block">
                 <Form.Label htmlFor="rate">{t("rate")}</Form.Label>
                 <Form.Control
                   className={formErrors.rate ? "is-invalid" : ""}
@@ -425,6 +455,14 @@ const EditCourse = () => {
                   onChange={onImageChange}
                 />
                 <span className="validate-error">{formErrors.image}</span>
+              </div>
+              <div className="col-md-6 col-sm-12 px-5 d-inline-block mb-5">
+                <Form.Label htmlFor="category">{t("category")}</Form.Label>
+                <PostCategories
+                  categories={allCategories}
+                  selected={categories}
+                />
+                {/* <span className="validate-error">{formErrors.published}</span> */}
               </div>
               <div className="col-md-6 col-sm-12 px-5 d-inline-block">
                 <img src={imageUrl} alt={formValues.title} width="200"></img>

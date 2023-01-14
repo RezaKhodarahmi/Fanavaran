@@ -50,52 +50,46 @@ const AvatarUpdate = (props) => {
       <div className="row">
         <div className="col-12">
           <form onSubmit={handelImageSubmit}>
-          <div
-            className="card text-center align-middle"
-            style={{ maxWidth: "150px" }}
-          >
-            <label aria-hidden="true" className="text-dark">
-              {t("avatar")}
-            </label>
+            <div
+              className="card text-center align-middle"
+              style={{ maxWidth: "150px" }}
+            >
+              <label aria-hidden="true" className="text-dark">
+                {t("avatar")}
+              </label>
 
-            <div className="card-header">
-             
-              <img
-                src={url}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  borderRadius: "50%",
-                  display: "inline-block",
-                }}
-              />
+              <div className="card-header">
+                <img
+                  src={url}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                />
+              </div>
+              <div className="card-body">
+                <input
+                  style={{ display: "inline-block" }}
+                  type="file"
+                  onChange={handelImageChange}
+                  accept="image/*"
+                  className="form-control form-control-sm"
+                  required
+                />
+              </div>
+              <div className="card-footer">
+                <button type="submit" className="btn btn-primary btn-sm">
+                  {t("update")}
+                </button>
+              </div>
             </div>
-            <div className="card-body">
-              <input
-                style={{ display: "inline-block" }}
-                type="file"
-                onChange={handelImageChange}
-                accept="image/*"
-                className="form-control form-control-sm"
-                required
-                
-              />
-            </div>
-            <div className="card-footer">
-              <button
-                type="submit"
-                className="btn btn-primary btn-sm"
-                
-              >
-                {t("update")}
-              </button>
-            </div>
-          </div>
           </form>
         </div>
       </div>
-      {success ? <Success /> : <></>}
-      {err ? <Danger /> : <></>}
+      {success ? <Success message="Profile updated successfuly!" /> : <></>}
+      {err ? <Danger message="Error was happend!" /> : <></>}
     </div>
   );
 };
