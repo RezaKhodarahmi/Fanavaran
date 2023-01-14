@@ -29,6 +29,9 @@ import {
   REQUEST_CREATE_USER,
   SUCCESS_CREATE_USER,
   FAIL_CREATE_USER,
+  REQUEST_GET_INSTRUCTORS,
+SUCCESS_GET_INSTRUCTORS,
+FAIL_GET_INSTRUCTORS
 } from "../constants/userConstants";
 
 export const createNewUser = (input, token) => async (dispatch, getState) => {
@@ -60,8 +63,11 @@ export const createNewUser = (input, token) => async (dispatch, getState) => {
 
     dispatch({ type: SUCCESS_CREATE_USER, data: data });
   } catch (e) {
-
-    dispatch({ type: FAIL_CREATE_USER, status: e.response.status,message: e.response.data.message });
+    dispatch({
+      type: FAIL_CREATE_USER,
+      status: e.response.status,
+      message: e.response.data.message,
+    });
   }
 };
 export const getUsers = (token) => async (dispatch, getState) => {
@@ -80,7 +86,22 @@ export const getUsers = (token) => async (dispatch, getState) => {
     dispatch({ type: FAIL_GET_USERS, payload: e });
   }
 };
+export const getInstractors = (token) => async (dispatch, getState) => {
+  dispatch({ type: REQUEST_GET_INSTRUCTORS, payload: null });
+  try {
+    const { data } = await axios.get(`${env.API_URL}/users/instructors`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
 
+    dispatch({ type: SUCCESS_GET_INSTRUCTORS, payload: data.data });
+  } catch (e) {
+    dispatch({ type: FAIL_GET_INSTRUCTORS, payload: e });
+  }
+};
 export const getUserById = (id, token) => async (dispatch, getState) => {
   dispatch({ type: REQUEST_GET_USER_ID, payload: null });
 

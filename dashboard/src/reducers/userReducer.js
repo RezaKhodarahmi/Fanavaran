@@ -20,6 +20,9 @@ import {
   REQUEST_CREATE_USER,
   SUCCESS_CREATE_USER,
   FAIL_CREATE_USER,
+  REQUEST_GET_INSTRUCTORS,
+  SUCCESS_GET_INSTRUCTORS,
+  FAIL_GET_INSTRUCTORS
 } from "../constants/userConstants";
 
 
@@ -47,6 +50,22 @@ export const userReducer = (
       return { loading: false, users: action.payload };
     case FAIL_GET_USERS:
       return { loading: false, err: action.payload, users: null };
+    default:
+      return state;
+  }
+};
+
+export const instructorReducer = (
+  state = { loading: false, instructors: [], err: null },
+  action
+) => {
+  switch (action.type) {
+    case REQUEST_GET_INSTRUCTORS:
+      return { loading: true, instructors: null };
+    case SUCCESS_GET_INSTRUCTORS:
+      return { loading: false, instructors: action.payload };
+    case FAIL_GET_INSTRUCTORS:
+      return { loading: false, err: action.payload, instructors: null };
     default:
       return state;
   }

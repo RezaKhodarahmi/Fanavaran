@@ -41,6 +41,19 @@ module.exports = {
       }
     );
   },
+  //Get all Instructor
+  getInstructor: (callBack) => {
+    pool.query(
+      `select * from users WHERE role=2  ORDER BY ID DESC`,
+      [],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
   // Get user by ID
   getUserByUserId: (id, callBack) => {
     pool.query(

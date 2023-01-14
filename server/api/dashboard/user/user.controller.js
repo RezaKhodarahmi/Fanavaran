@@ -7,6 +7,7 @@ const {
   updateUserProfile,
   deleteUser,
   getUserByUserEmail,
+  getInstructor
 } = require("../../dashboard/user/user.service");
 
 
@@ -134,6 +135,33 @@ module.exports = {
         return res.status(400).json({
           success: 0,
           message: "Failed to get users",
+        });
+      }
+      return res.status(200).json({
+        success: 1,
+        data: results,
+      });
+    });
+  },
+  //Get all Instructors
+  getInstructors: (req, res) => {
+    //Check if validation error
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    //Get users
+    getInstructor((err, results) => {
+      if (err) {
+        return res.status(500).json({
+          success: 0,
+          message: err.message,
+        });
+      }
+      if (!results) {
+        return res.status(400).json({
+          success: 0,
+          message: "Failed to get Instructors",
         });
       }
       return res.status(200).json({

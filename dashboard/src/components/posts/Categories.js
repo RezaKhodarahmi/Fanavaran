@@ -1,7 +1,6 @@
 import React from "react";
 import Select from "react-select";
 
-
 const Categories = (props) => {
   const options = [
     props.categories?.map((item) => ({ value: item.id, label: item.title })),
@@ -12,6 +11,7 @@ const Categories = (props) => {
       <Select
         options={options[0]}
         isMulti
+        // defaultValue={options[0]}
         name="category"
         styles={{
           option: (baseStyles, state) => ({
@@ -22,7 +22,7 @@ const Categories = (props) => {
           multiValueLabel: (styles, { data }) => ({
             ...styles,
             color: "#283046",
-            backgroundColor:"silver"
+            backgroundColor: "silver",
           }),
         }}
       />

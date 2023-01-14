@@ -11,6 +11,7 @@ const {
   updateUserAvatar,
   deleteUser,
   checkTokenExpired,
+  getInstructors,
 } = require("../../dashboard/user/user.controller");
 
 // Create new user
@@ -51,6 +52,8 @@ router.get(
 );
 //Get all recorded user
 router.get("/", checkToken, getUsers);
+router.get("/instructors", checkToken, getInstructors);
+
 //get user with email
 router.get(
   "/email/:email",

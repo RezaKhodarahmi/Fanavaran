@@ -43,15 +43,15 @@ const MetaEdit = (props) => {
       ))}
       <div className="col-12 px-5 d-inline-block">
         <button type="submit" className="btn btn-primary">
-          {t("update")}
+          {t("update")} 
         </button>
       </div>
     </form>
     {
-      success? (<Success  />):(<p></p>)
+      success? (<Success  message="Meta updated succesfuly!"/>):(<p></p>)
     }
     {
-      err? (<Danger  />):(<p></p>)
+      err? (<Danger message="Error was happend!" />):(<p></p>)
     }
     </>
   );

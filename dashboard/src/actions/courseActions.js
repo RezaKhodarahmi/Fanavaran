@@ -15,9 +15,8 @@ import {
   FAIL_DELETE_COURSES,
   REQUEST_GET_COURSE,
   SUCCESS_GET_COURSE,
-  FAIL_GET_COURSE
+  FAIL_GET_COURSE,
 } from "../constants/coursesConstants";
-
 
 export const getCourses = (token) => async (dispatch, getState) => {
   dispatch({ type: REQUEST_GET_COURSES, payload: null });
@@ -35,22 +34,22 @@ export const getCourses = (token) => async (dispatch, getState) => {
     dispatch({ type: FAIL_GET_COURSES, payload: e.response.data });
   }
 };
-export const getCourseById = (id,token) => async (dispatch, getState) => {
-    dispatch({ type: REQUEST_GET_COURSE, payload: null });
-    try {
-      const { data } = await axios.get(`${env.API_URL}/courses/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-  
-      dispatch({ type: SUCCESS_GET_COURSE, payload: data.data });
-    } catch (e) {
-      dispatch({ type: FAIL_GET_COURSE, payload: e.response.data });
-    }
-  };
+export const getCourseById = (id, token) => async (dispatch, getState) => {
+  dispatch({ type: REQUEST_GET_COURSE, payload: null });
+  try {
+    const { data } = await axios.get(`${env.API_URL}/courses/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+
+    dispatch({ type: SUCCESS_GET_COURSE, payload: data.data, categories:data.categories });
+  } catch (e) {
+    dispatch({ type: FAIL_GET_COURSE, payload: e.response.data });
+  }
+};
 export const createCourse = (inputs, token) => async (dispatch, getState) => {
   dispatch({ type: REQUEST_CREATE_COURSES, payload: null });
   try {
@@ -61,7 +60,7 @@ export const createCourse = (inputs, token) => async (dispatch, getState) => {
       },
       withCredentials: true,
     });
-    
+
     dispatch({ type: SUCCESS_CREATE_COURSES, payload: data.data.insertId });
   } catch (e) {
     dispatch({ type: FAIL_CREATE_COURSES, payload: e.response.data });
@@ -69,12 +68,11 @@ export const createCourse = (inputs, token) => async (dispatch, getState) => {
 };
 
 export const editCourse = (inputs, token) => async (dispatch, getState) => {
-
   dispatch({ type: REQUEST_EDIT_COURSES, payload: null });
   try {
     const { data } = await axios.patch(
       `${env.API_URL}/courses/update`,
-      inputs ,
+      inputs,
       {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -86,7 +84,7 @@ export const editCourse = (inputs, token) => async (dispatch, getState) => {
 
     dispatch({ type: SUCCESS_EDIT_COURSES, payload: data });
   } catch (e) {
-    console.log(e.response.data)
+    console.log(e.response.data);
     dispatch({ type: FAIL_EDIT_COURSES, payload: e.response.data });
   }
 };
@@ -99,10 +97,8 @@ export const deleteCourse = (id, token) => async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-   
     dispatch({ type: SUCCESS_DELETE_COURSES, payload: data });
   } catch (e) {
-   
     dispatch({ type: FAIL_DELETE_COURSES, payload: e.response.data });
   }
 };

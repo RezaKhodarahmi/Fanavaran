@@ -17,6 +17,7 @@ import {
   CreateUserMetaReducer,
   createUserReducer,
   getUserMetaReducer,
+  instructorReducer,
   updateUserMetaReducer,
   updateUserReducer,
   userByIdReducer,
@@ -52,7 +53,8 @@ const reducer = combineReducers({
   categories: getCategoriesReducer,
   newCategory:createCategoryReducer,
   singleCategory:getCategoryByIdReducer,
-  editCategory:editCategoryReducer
+  editCategory:editCategoryReducer,
+  instructors:instructorReducer
 });
 const composeEhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
