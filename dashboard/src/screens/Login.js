@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Link, useNavigate } from 'react-router-dom'
-// Styles
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { authLogin } from "../actions/authActions";
 import Loading from "../components/Loading";
 import env from "react-dotenv";
-import { Facebook, Twitter, Mail, GitHub, HelpCircle, Coffee, X } from 'react-feather'
 import Form from "react-bootstrap/Form";
+
+// ** Third Party Components
+import { Facebook, Twitter, Mail, GitHub, HelpCircle, Coffee, X } from 'react-feather'
 
 // ** Reactstrap Imports
 import {
@@ -24,27 +25,10 @@ import {
 } from 'reactstrap'
 
 // ** Illustrations Imports
-import source from '../../src/assets/images/pages/login-v2.svg'
+import source from '../assets/images/pages/login-v2.svg'
 
 // ** Styles
 import '../core/scss/react/pages/page-authentication.scss'
-
-const ToastContent = ({ t, name, role }) => {
-  return (
-    <div className='d-flex'>
-      <div className='me-1'>
-        <Avatar size='sm' color='success' icon={<Coffee size={12} />} />
-      </div>
-      <div className='d-flex flex-column'>
-        <div className='d-flex justify-content-between'>
-          <h6>{name}</h6>
-          <X size={12} className='cursor-pointer' onClick={() => toast.dismiss(t.id)} />
-        </div>
-        <span>You have successfully logged in as an {role} user to Vuexy. Now you can start to explore. Enjoy!</span>
-      </div>
-    </div>
-  )
-}
 
 const ReCaptchaV2 = React.lazy(() => import("react-google-recaptcha"));
 const Login = () => {
@@ -52,7 +36,8 @@ const Login = () => {
   const { loading, status } = useSelector((state) => state.user);
   const emailRef = useRef();
   const errRef = useRef();
-  //Use Multiplie language
+
+  //Use Multiple language
   const { t } = useTranslation();
   const initialValues = { email: "", password: "", token: null };
   const [formValues, setFormValues] = useState(initialValues);
@@ -135,171 +120,126 @@ const Login = () => {
       {loading ? (
         <Loading />
       ) : (
-          <div className="auth-wrapper auth-cover">
-              <Row className='auth-inner m-0'>
-                {/* Logo */}
-                <Link className='brand-logo' to='/'>
-                  <img src="assets/images/Fanavaran_Logo.png" className="img-fluid" />
-                </Link>
-                {/* Left Side */}
-                <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
-                  <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
-                    <img className='img-fluid' src={source} alt='Login Cover' />
+        <div className="auth-wrapper auth-cover">
+          <Row className='auth-inner m-0'>
+            {/* Logo */}
+            <Link className='brand-logo' to='/' onClick={e => e.preventDefault()}>
+              <img src="assets/images/Fanavaran_logo.png" alt="Fanavaran Main Logo" className="img-fluid" />
+            </Link>
+
+            {/* Side Left */}
+            <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
+              <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
+                <img className='img-fluid' src={source} alt='Login Cover' />
+              </div>
+            </Col>
+
+            {/* Side Right */}
+            <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
+              <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
+                {/* Title and Desc */}
+                <CardTitle tag='h2' className='fw-bold mb-1'>
+                  Welcome to Fanavaran LMS
+                </CardTitle>
+                <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
+
+                {/* Alert */}
+                {errMsg ? (
+                  <span ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
+                    <Alert color='danger'>
+                      <div className='alert-body font-small-2'>
+                        <p>
+                          <small className='me-50'>
+                            <span className='fw-bold'>{errMsg}</span>
+                          </small>
+                        </p>
+                      </div>
+
+                      <HelpCircle
+                        id='login-tip'
+                        className='position-absolute'
+                        size={18}
+                        style={{ top: '10px', right: '10px' }}
+                      />
+                      
+                      <UncontrolledTooltip target='login-tip' placement='left'>
+                        For any questions contact support
+                      </UncontrolledTooltip>
+                    </Alert>
+                  </span>
+                ) : (
+                  <span></span>
+                )}
+
+                {/* Form */}
+                <Form className='auth-login-form mt-2' onSubmit={handelSubmit}>
+
+                  {/* Username field */}
+                  <div className='mb-1'>
+                    <Label className='form-label' for='email'>{t("email")}</Label>
+                    <Form.Control
+                      type="text"
+                      className={formErrors.email? "is-invalid":""}
+                      id="email"
+                      name="email"
+                      ref={emailRef}
+                      autoComplete="off"
+                      value={formValues.email}
+                      onChange={handleChange}
+                    />
+                    <p className="validate-error">{formErrors.email}</p>
                   </div>
-                </Col>
-                {/* Login Side */}
-                <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
-                  <Col Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
-                    {/* Alert */}
+                  
+                  {/* Password */}
+                  <div className='mb-1'>
+                    <div className='d-flex justify-content-between'>
+                      <Label className='form-label' for='password'>
+                        Password
+                      </Label>
+                      <Link to='/forgot-password'>
+                        <small>Forgot Password?</small>
+                      </Link>
+                    </div>
 
-                    {errMsg ? (
-                      <span
-                        ref={errRef}
-                        className={errMsg ? "errmsg" : "offscreen"}
-                        aria-live="assertive"
-                      >
-                        <Alert color='danger'>
-                          <div className='alert-body font-small-2'>
-                            <p>
-                              <small className='me-50'>
-                                <span className='fw-bold'>{errMsg}</span>
-                              </small>
-                            </p>
-                          </div>
-                          <HelpCircle
-                            id='login-tip'
-                            className='position-absolute'
-                            size={18}
-                            style={{ top: '10px', right: '10px' }}
-                          />
-                          <UncontrolledTooltip target='login-tip' placement='left'>
-                            This is just for ACL demo purpose.
-                          </UncontrolledTooltip>
-                        </Alert>
-                      </span>
-                      ) : (
-                      <span></span>
-                      )
-                    }
+                    <Form.Control
+                      type="password"
+                      className={formErrors.password? "is-invalid":""}
+                      id="password"
+                      name="password"
+                      value={formValues.password}
+                      onChange={handleChange}
+                    />
+                    <p className="validate-error">{formErrors.password}</p>
+                  </div>
 
-                    {/* Title */}
-                    <CardTitle tag='h2' className='fw-bold mb-1'>
-                      Welcome to Fanavaran
-                    </CardTitle>
-                    <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
-                    {/* Login Form */}
-                    <Form className='auth-login-form mt-2' onSubmit={handelSubmit}>
-                      {/* Email or Username */}
-                      <div className="mb-1">
-                        {/* Label */}
-                        <Label className='form-label' for='email'>{t("email")}</Label>
-
-                        {/* Field */}
-                        <Form.Control
-                          type="text"
-                          className={formErrors.email ? "is-invalid" : ""}
-                          id="email"
-                          name="email"
-                          ref={emailRef}
-                          autoComplete="off"
-                          value={formValues.email}
-                          onChange={handleChange}
+                  {/* Recaptcha */}
+                  <div className="mb-1">
+                    <div className="col-12 text-center">
+                      <Suspense callback={<label className="text-light">Loading...</label>}>
+                        <ReCaptchaV2
+                          sitekey={env.RECAPTCHA_SITE_KEY}
+                          onChange={handleToken}
+                          onExpire={handleExpire}
                         />
-                      </div>
+                      </Suspense>
+                    </div>
 
-                      {/* Password */}
-                      <div className="mb-1 form-password-toggle">
-                        <div className='d-flex justify-content-between'>
-                          <Label className='form-label' for='password'>
-                            Password
-                          </Label>
+                    <p className="validate-error">{formErrors.token}</p>
+                  </div>
 
-                          <Link to='/'>
-                            <small>Forgot Password?</small>
-                          </Link>
-                        </div>
+                  {/* Remember me */}
+                  <div className='form-check mb-1'>
+                    <Input type='checkbox' id='remember-me' />
+                    <Label className='form-check-label' for='remember-me'>{t("remember-me")}</Label>
+                  </div>
 
-                        <div className="input-group input-group-merge">
-                          <Form.Control
-                            type="password"
-                            className={formErrors.password ? "is-invalid" : ""}
-                            id="password"
-                            name="password"
-                            value={formValues.password}
-                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                            onChange={handleChange}
-                          />
-                          <span className="input-group-text cursor-pointer">
-                            <i className="ti ti-eye-off"></i>
-                          </span>
-                        </div>
+                  <Button type='submit' color='primary' block>{t("login-title")}</Button>
 
-                        <p className="validate-error">{formErrors.password}</p>
-                      </div>
-
-                      {/* Remember me */}
-                      <div className='form-check mb-1'>
-                        <Input type='checkbox' id='remember-me' />
-                        <Label className='form-check-label' for='remember-me'>
-                          {t("remember-me")}
-                        </Label>
-                      </div>
-
-                      {/* Recaptcha */}
-                      <div className="mb-3">
-                        <div className="col-12 text-center">
-                          <Suspense
-                            callback={<label className="text-light">Loading...</label>}
-                          >
-                            <ReCaptchaV2
-                              sitekey={env.RECAPTCHA_SITE_KEY}
-                              onChange={handleToken}
-                              onExpire={handleExpire}
-                            />
-                          </Suspense>
-                        </div>
-
-                        <p className="validate-error">{formErrors.token}</p>
-                      </div>
-
-                      <div className="mb-3">
-                        <button
-                          className="btn btn-primary d-grid w-100"
-                          type="submit"
-                        >
-                          {t("login-title")}
-                        </button>
-                      </div>
-                    </Form>
-
-                    <p className='text-center mt-2'>
-              <span className='me-25'>New on our platform?</span>
-                <Link to='/register'>
-                  <span>Create an account</span>
-                </Link>
-              </p>
-              <div className='divider my-2'>
-                <div className='divider-text'>or</div>
-              </div>
-              <div className='auth-footer-btn d-flex justify-content-center'>
-                <Button color='facebook'>
-                  <Facebook size={14} />
-                </Button>
-                <Button color='twitter'>
-                  <Twitter size={14} />
-                </Button>
-                <Button color='google'>
-                  <Mail size={14} />
-                </Button>
-                <Button className='me-0' color='github'>
-                  <GitHub size={14} />
-                </Button>
-              </div>
-
-                  </Col>
-                </Col>
-              </Row>
-          </div>
+                </Form>
+              </Col>
+            </Col>
+          </Row>
+        </div>
       )}
     </>
   );
