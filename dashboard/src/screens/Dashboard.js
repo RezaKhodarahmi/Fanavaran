@@ -8,6 +8,9 @@ import Avatar from '../../src/core/components/avatar'
 import Timeline from '../../src/core/components/timeline'
 import AvatarGroup from '../../src/core/components/avatar-group'
 
+// ** Context
+import { ThemeColors } from '../utility/context/ThemeColors'
+
 import env from "react-dotenv";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -42,6 +45,9 @@ import avatar20 from '../../src/assets/images/portrait/small/avatar-s-20.jpg'
 import '../core/scss/react/libs/charts/apex-charts.scss'
 
 const Dashboard = () => {
+  // ** Context
+  const { colors } = useContext(ThemeColors)
+
   // ** Vars
   const avatarGroupArr = [
     {
