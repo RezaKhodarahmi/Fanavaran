@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 //import "./assets/style/App.css";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
-import "./custom";
-//Start multilanguage Dep
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle";
+// import "./custom";
+
+//Start multilingual Dep
 import i18n from "i18next";
 import cookies from "js-cookie";
 import { useTranslation, initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
-//Start multilanguage Dep
+
+//Start multilingual Dep
 import Users from "./screens/users/Users";
 import Dashboard from "./screens/Dashboard";
 import Sidebar from "./screens/Sidebar";
@@ -49,7 +51,7 @@ const language = [
     dir: "rtl",
   },
 ];
-//Multilanguage settings
+//Multilingual Settings
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .use(LanguageDetector)
@@ -98,7 +100,7 @@ function App() {
   const cou_code = currentLanguageCode == "fa" ? "ir" : "ca";
   const cou_name = currentLanguageCode == "fa" ? "فارسی" : "English";
   useEffect(() => {
-    //Change body DIR and CLASS if languge is RTL(FA)
+    //Change body DIR and CLASS if language is RTL(FA)
     document.body.dir = currentLanguage.dir || "ltr";
     document.body.dir == "rtl"
       ? document.body.classList.add("rtl")
